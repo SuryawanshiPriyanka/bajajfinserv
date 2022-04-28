@@ -11,38 +11,25 @@ app.post('/bfhl', (req, res) => {
 
     var arr = req.body.data;
     const digit = [];
-    /*arr.map((e)=>{
+    const alphabets = [];
+
+    arr.map((e)=>{
         var a = (parseInt(e));
-        console.log(a);
-        if(a != NaN) {
+        if(!isNaN(a)) {
             digit.push(a);
+        } else {
+            alphabets.push(e);
         }
     })
-    console.log(digit);*/
-    var number = arr.filter(numbersOnly);
-    var alphabetsarr = arr.filter(alphabets);
 
-    function alphabets(value) {
-        if(typeof(value) === 'string') {
-            return value;
-        }
-    }
-    function numbersOnly(value) {
-        if (typeof (parseInt(value)) == 'number') {
-            return value;
-        } 
-    }
-    console.log(number);
-    console.log(alphabetsarr);
     const user = {
         "is_success": true,
         "user_id": "john_doe_17091999",
         "email": "john@xyz.com",
         "roll_number": "ABCD123",
-        "number": number,
-        "alphabets": alphabetsarr
+        "number": digit,
+        "alphabets": alphabets
     }
-
     res.send(user);
 });
 
